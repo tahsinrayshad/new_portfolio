@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { RevealAnimation } from "@/components/ui/reveal-animation"
+import MyPhoto from "@/public/photo.jpg"
 
 export default function PersonalInfo() {
   const personalDetails = [
@@ -151,7 +152,7 @@ export default function PersonalInfo() {
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full p-1">
                           <div className="w-full h-full bg-white dark:bg-gray-800 rounded-full p-2">
                             <Image
-                              src="https://rayshad11.wordpress.com/wp-content/uploads/2025/06/img_20250628_040748.jpg"
+                              src={MyPhoto}
                               alt="Tahsin Islam"
                               fill
                               className="object-cover rounded-full"

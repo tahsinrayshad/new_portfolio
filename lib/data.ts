@@ -1,3 +1,9 @@
+import { url } from "inspector"
+
+import IBCOL from "../public/IBCOL.jpg"
+import BCOLBD from "../public/BCOLBD.jpg"
+import PB from "../public/PB.jpg"
+
 // Sample data for preview purposes
 export const personalInfo = {
   name: "Tahsin Islam",
@@ -55,7 +61,7 @@ export const achievements = [
     type: "International",
     description:
       "Recognized for outstanding performance in blockchain technology and innovation at the international level.",
-    image: "https://rayshad11.wordpress.com/wp-content/uploads/2025/06/ibcol-2024-award-of-merit-24bd-46-finchain-2.jpg",
+    image: IBCOL,
   },
   {
     title: "Bronze Award",
@@ -64,7 +70,7 @@ export const achievements = [
     type: "National",
     description:
       "Secured third position in the national blockchain competition, demonstrating expertise in distributed ledger technologies.",
-    image: "https://rayshad11.wordpress.com/wp-content/uploads/2025/06/494102469_1282475180552215_1427172948177007436_n.jpg", // Add your bronze award image URL here
+    image: BCOLBD,
   },
   {
     title: "World Rank: 91 (Category: O)",
@@ -72,7 +78,7 @@ export const achievements = [
     date: "November 22, 2023",
     type: "International",
     description: "Achieved global ranking of 91 in the competitive physics problem-solving competition.",
-    image: "https://rayshad11.wordpress.com/wp-content/uploads/2025/06/physics-brawls-certificate_page-0001.jpg", // Add your physics brawl image URL here
+    image: PB,
   },
 ]
 
