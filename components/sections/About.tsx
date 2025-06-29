@@ -21,52 +21,83 @@ import {
 import Image from "next/image"
 import { RevealAnimation } from "@/components/ui/reveal-animation"
 import MyPhoto from "@/public/photo.jpg"
+import { personalInfo, projects, experiences } from "@/lib/data"
 
 export default function PersonalInfo() {
+  // Personal details with birth date
   const personalDetails = [
     {
       icon: User,
       label: "Name",
-      value: "Tahsin Islam",
+      value: personalInfo.name,
       color: "from-blue-500 to-cyan-500",
       bgColor: "bg-blue-50 dark:bg-blue-900/20",
     },
     {
       icon: Calendar,
       label: "Date of Birth",
-      value: "July 11, 2004",
+      value: personalInfo.birthDate,
       color: "from-green-500 to-emerald-500",
       bgColor: "bg-green-50 dark:bg-green-900/20",
     },
     {
       icon: Home,
       label: "Address",
-      value: "House# 15, Road# 05, Sector# 06, Uttara, Dhaka, Bangladesh",
+      value: personalInfo.location,
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-50 dark:bg-purple-900/20",
     },
     {
-      icon: Hash,
-      label: "Zip Code",
-      value: "1704",
-      color: "from-orange-500 to-red-500",
-      bgColor: "bg-orange-50 dark:bg-orange-900/20",
-    },
-    {
       icon: Mail,
       label: "Email",
-      value: "tahsinrayshad.2016@gmail.com",
+      value: personalInfo.email,
       color: "from-indigo-500 to-purple-500",
       bgColor: "bg-indigo-50 dark:bg-indigo-900/20",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+880 1554 749897",
+      value: personalInfo.phone,
       color: "from-teal-500 to-cyan-500",
       bgColor: "bg-teal-50 dark:bg-teal-900/20",
     },
   ]
+
+  // Calculate dynamic stats from actual data
+  const calculateQuickFacts = () => {
+    // Extract birth date from personalInfo
+    const birthDate = new Date(personalInfo.birthDate)
+    const today = new Date()
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const monthDiff = today.getMonth() - birthDate.getMonth()
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--
+    }
+
+    // Calculate years of experience from experiences data
+    const currentYear = new Date().getFullYear()
+    const startYears = experiences.map(exp => {
+      const match = exp.duration.match(/\d{4}/)
+      return match ? parseInt(match[0]) : currentYear
+    })
+    const earliestYear = Math.min(...startYears)
+    const yearsExperience = currentYear - earliestYear
+
+    // Count total projects
+    const totalProjects = projects.length
+
+    // Count active societies
+    const activeSocieties = experiences.length
+
+    return {
+      age,
+      yearsExperience,
+      totalProjects,
+      activeSocieties
+    }
+  }
+
+  const dynamicFacts = calculateQuickFacts()
 
   const interests = [
     { icon: Code, label: "Programming", color: "text-blue-600" },
@@ -78,10 +109,10 @@ export default function PersonalInfo() {
   ]
 
   const quickFacts = [
-    { label: "Age", value: "20", icon: Calendar },
-    { label: "Experience", value: "3+ Years", icon: Code },
-    { label: "Projects", value: "5+", icon: Award },
-    { label: "Societies", value: "3", icon: Heart },
+    { label: "Age", value: dynamicFacts.age.toString(), icon: Calendar },
+    { label: "Experience", value: `${dynamicFacts.yearsExperience}+ Years`, icon: Code },
+    { label: "Projects", value: `${dynamicFacts.totalProjects}+`, icon: Award },
+    { label: "Societies", value: dynamicFacts.activeSocieties.toString(), icon: Heart },
   ]
 
   return (
@@ -206,10 +237,14 @@ export default function PersonalInfo() {
                           key={index}
                           className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
                           whileHover={{ scale: 1.05, y: -2 }}
-                          transition={{ type: "spring", stiffness: 300 }}
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
+                          transition={{ 
+                            type: "spring", 
+                            stiffness: 300,
+                            duration: 0.6, 
+                            delay: index * 0.1 
+                          }}
                           viewport={{ once: true }}
                         >
                           <fact.icon className="h-6 w-6 text-blue-600 dark:text-blue-400 mx-auto mb-2" />
@@ -237,10 +272,10 @@ export default function PersonalInfo() {
                     <div className="space-y-4">
                       {[
                         { language: "Bengali", level: "Native", proficiency: 100 },
-                        { language: "English", level: "Fluent", proficiency: 90 },
-                        { language: "Arabic", level: "Intermediate", proficiency: 70 },
+                        { language: "English", level: "Fluent", proficiency: 90 },                        
                         { language: "Hindi", level: "Conversational", proficiency: 60 },
                         { language: "German", level: "Beginner", proficiency: 40 },
+                        { language: "Arabic", level: "Intermediate", proficiency: 20 },
                       ].map((lang, index) => (
                         <motion.div
                           key={index}

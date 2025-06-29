@@ -11,6 +11,7 @@ export const personalInfo = {
   email: "tahsinrayshad.2016@gmail.com",
   phone: "(+880) 1554749897",
   location: "Dhaka, Bangladesh",
+  birthDate: "July 11, 2004",
   website: "tahsinrayshad.com",
   bio: "Full-Stack Developer and Software Engineering Student, passionate about building innovative solutions and contributing to the tech community through leadership and development.",
   socialLinks: {
@@ -20,6 +21,8 @@ export const personalInfo = {
     kaggle: "https://kaggle.com/tahsinrayshad",
   },
 }
+
+
 
 export const education = [
   {
