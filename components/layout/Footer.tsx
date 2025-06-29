@@ -96,9 +96,6 @@ export default function Footer() {
           </div>
 
           <div className="border-t border-gray-700 pt-8 text-center">
-            <p className="text-gray-300 flex items-center justify-center">
-              Made with <Heart className="h-4 w-4 mx-2 text-red-500" /> by Tahsin Islam
-            </p>
             <p className="text-gray-400 text-sm mt-2">© {new Date().getFullYear()} All rights reserved.</p>
           </div>
         </div>

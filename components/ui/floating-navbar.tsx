@@ -8,15 +8,23 @@ import { Button } from "@/components/ui/button"
 
 export default function FloatingNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(true) // Default to dark theme
   const [activeSection, setActiveSection] = useState("")
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const theme = localStorage.getItem("theme")
-    if (theme === "dark") {
+    // Default to dark theme if no theme is stored
+    if (theme === "light") {
+      setIsDark(false)
+      document.documentElement.classList.remove("dark")
+    } else {
+      // Default to dark theme
       setIsDark(true)
       document.documentElement.classList.add("dark")
+      if (!theme) {
+        localStorage.setItem("theme", "dark")
+      }
     }
   }, [])
 

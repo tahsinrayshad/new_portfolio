@@ -76,7 +76,7 @@ export const achievements = [
     image: BCOLBD,
   },
   {
-    title: "World Rank: 91 (Category: O)",
+    title: "91st Place (Category: O)",
     event: "Physics Brawl Online 2023",
     date: "November 22, 2023",
     type: "International",
