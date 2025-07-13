@@ -114,21 +114,6 @@ export default function FloatingNavbar() {
                     </motion.div>
                   ))}
 
-                  {/* Separator */}
-                  <div className="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-2"></div>
-
-                  {/* Extra Navigation Items */}
-                  {/* {extraNavItems.map((item) => (
-                    <motion.div key={item.href} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Link
-                        href={item.href}
-                        className="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg"
-                      >
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  ))} */}
-
                   {/* Theme Toggle */}
                   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <Button
