@@ -70,7 +70,6 @@ const skillsData = [
     skills: [
       { name: "Git", level: 90, experience: "4+ years" },
       { name: "GitHub", level: 88, experience: "3+ years" },
-      { name: "NPX", level: 75, experience: "2+ years" },
     ],
     gradient: "from-gray-400 via-gray-500 to-gray-600",
     glowColor: "shadow-gray-500/25",
@@ -195,12 +194,9 @@ export default function Skills() {
             </div> */}
 
             <h2 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-              Skills Arsenal
+              Technical Skills
             </h2>
 
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Explore my technical skills through interactive cards. Click on any category to dive deeper.
-            </p>
 
             <motion.div
               className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-6"

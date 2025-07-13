@@ -2,8 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import Header from "@/components/layout/Header"
-import Footer from "@/components/layout/Footer"
+import ConditionalHeader from "@/components/layout/ConditionalHeader"
+import ConditionalFooter from "@/components/layout/ConditionalFooter"
 import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -53,9 +53,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} scroll-smooth`}>
-        <Header />
+        <ConditionalHeader />
         <main className="overflow-x-hidden">{children}</main>
-        <Footer />
+        <ConditionalFooter />
         <Toaster />
       </body>
     </html>

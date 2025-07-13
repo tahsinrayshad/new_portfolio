@@ -87,6 +87,17 @@ export const achievements = [
 
 export const projects = [
   {
+    title: "SwaapIt",
+    period: "Jun 2025 - Present",
+    description:
+      "I am currently working the Skill Listings and Discovery feature, enabling users to filter and search teachers by skill, location, rating,and availability, with detailed profiles to support informed selection.",
+    technologies: ["MERN Stack"],
+    status: "In Progress",
+    supervisors: ["Njayou Youssouf", "Ajwad Abrar Mostofa"],
+    github: "https://github.com/tahsinrayshad/SwapIt",
+    demo: "#",
+  },
+  {
     title: "MathXplorer",
     period: "Sep 2024 - Mar 2025",
     description:
@@ -140,6 +151,28 @@ export const projects = [
     supervisors: ["Prof. Dr. Khondokar Habibul Kabir"],
     github: "https://github.com/tahsinrayshad/iut-dlt-booking",
     demo: "https://dlt.library.iutoic-dhaka.edu/",
+  },
+  {
+    title: "House of The Rent",
+    period: "Mar 2023 - May 2023",
+    description:
+      "House of the Rent is a user-friendly app that simplifies the rental process. Manage and track your properties effortlessly. Experience the convenience of our intuitive interface and enhance your property management with our reliable software.",
+    technologies: ["C#", ".NET"],
+    status: "Completed",
+    supervisors: ["Tasnim Ahmed"],
+    github: "https://github.com/tahsinrayshad/OOP_Project_HOR",
+    demo: "#",
+  },
+  {
+    title: "ReadEasy",
+    period: "Jan 2024",
+    description:
+      "ReadEasy is a Java console application for keeping records of your books and book readings. The sole purpose of this project was to build an application by following SOLID principles of Object Oriented Concepts.",
+    technologies: ["Java"],
+    status: "Completed",
+    supervisors: ["Md. Jubair Ibna Mostafa"],
+    github: "https://github.com/tahsinrayshad/ReadEasy_Project",
+    demo: "#",
   },
 ]
 
