@@ -272,10 +272,8 @@ export default function PersonalInfo() {
                     <div className="space-y-4">
                       {[
                         { language: "Bengali", level: "Native", proficiency: 100 },
-                        { language: "English", level: "Fluent", proficiency: 90 },                        
-                        { language: "Hindi", level: "Conversational", proficiency: 60 },
-                        { language: "German", level: "Beginner", proficiency: 40 },
-                        { language: "Arabic", level: "Intermediate", proficiency: 20 },
+                        { language: "English", level: "Fluent", proficiency: 90 },
+                        { language: "German", level: "Beginner", proficiency: 20 },
                       ].map((lang, index) => (
                         <motion.div
                           key={index}
