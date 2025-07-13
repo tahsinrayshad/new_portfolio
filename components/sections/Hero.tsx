@@ -268,7 +268,7 @@ export default function Hero() {
                 className="border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm px-8 py-4 text-lg font-semibold rounded-full shadow-lg"
                 asChild
               >
-                <Link href="https://drive.google.com/file/d/1lwf12KwRVzgLrzWHOoj5QpFcKAHF2FWX/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <Link href="https://drive.google.com/file/d/1CPkwv7qRf6OR01CMT2ci5G2l8WgxxuDA/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                   <Download className="h-5 w-5 mr-2" />
                   Resume
                 </Link>

@@ -30,6 +30,7 @@ const skillsData = [
       { name: "CSS", level: 90, experience: "4+ years" },
       { name: "JavaScript", level: 88, experience: "3+ years" },
       { name: "React", level: 85, experience: "2+ years" },
+      { name: "TypeScript", level: 75, experience: "1+ years" },
     ],
     gradient: "from-emerald-400 via-emerald-500 to-emerald-600",
     glowColor: "shadow-emerald-500/25",
