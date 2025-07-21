@@ -55,22 +55,8 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-      {/* Animated Background */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%)",
-            "radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%)",
-          ],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse",
-        }}
-      />
+      {/* Simplified Static Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-blue-50/50 dark:from-purple-900/10 dark:via-pink-900/10 dark:to-blue-900/10" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">

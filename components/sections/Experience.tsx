@@ -86,61 +86,22 @@ export default function Experience() {
 
   return (
     <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)",
-            "radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)",
-            "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)"
-          ]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse"
-        }}
-      />
+      {/* Simplified static background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-green-50/50 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-green-900/10" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <RevealAnimation>
             <div className="text-center mb-16">
-              {/* <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/50 rounded-full mb-6"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                <span className="text-blue-600 dark:text-blue-400 font-medium">Leadership Journey</span>
-              </motion.div> */}
-
-              <motion.h2
-                className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
+              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
                 Extracurricular Activities
-              </motion.h2>
+              </h2>
 
-              <motion.p
-                className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 Building communities, organizing events, and leading teams across multiple university societies
-              </motion.p>
+              </p>
 
-              <motion.div
-                className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-6"
-                initial={{ width: 0 }}
-                whileInView={{ width: 96 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                viewport={{ once: true }}
-              />
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-6" />
             </div>
           </RevealAnimation>
 
@@ -202,14 +163,9 @@ export default function Experience() {
 
                               <div className="grid gap-4">
                                 {exp.events.map((event, eventIndex) => (
-                                  <motion.div
+                                  <div
                                     key={eventIndex}
                                     className="group p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover:shadow-lg transition-all duration-300 border-l-4 border-transparent hover:border-blue-500"
-                                    initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.6, delay: eventIndex * 0.1 }}
-                                    viewport={{ once: true }}
-                                    whileHover={{ scale: 1.02, x: index % 2 === 0 ? 5 : -5 }}
                                   >
                                     <div className="flex items-start justify-between mb-3">
                                       <div className="flex-1">
@@ -254,7 +210,7 @@ export default function Experience() {
                                         Team Coordination
                                       </span>
                                     </div>
-                                  </motion.div>
+                                  </div>
                                 ))}
                               </div>
                             </div>

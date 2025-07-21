@@ -117,22 +117,8 @@ export default function PersonalInfo() {
 
   return (
     <section id="about" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
-      {/* Animated Background */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            "radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)",
-            "radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)",
-            "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)",
-          ],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse",
-        }}
-      />
+      {/* Simplified Static Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-green-50/50 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-green-900/10" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">

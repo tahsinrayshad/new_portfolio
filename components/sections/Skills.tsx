@@ -136,45 +136,22 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-      {/* Animated Background */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)",
-            "radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)",
-            "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)"
-          ]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse"
-        }}
-      />
+      {/* Simplified Static Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-green-50/50 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-green-900/10" />
       
-      {/* Floating orbs - only show in dark mode for better contrast */}
+      {/* Static decorative orbs */}
+            {/* Static decorative orbs */}
       <div className="absolute inset-0 dark:block hidden">
-        {orbs.map((orb) => (
-          <motion.div
+        {orbs.slice(0, 3).map((orb, index) => (
+          <div
             key={orb.id}
-            className="absolute rounded-full mix-blend-multiply filter blur-xl opacity-30"
+            className="absolute rounded-full opacity-20"
             style={{
-              background: `radial-gradient(circle, ${orb.color}40 0%, transparent 70%)`,
+              background: orb.color,
               width: `${orb.width}px`,
               height: `${orb.height}px`,
               left: `${orb.left}%`,
               top: `${orb.top}%`,
-            }}
-            animate={{
-              x: [0, orb.animateX],
-              y: [0, orb.animateY],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: orb.duration,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: "reverse",
             }}
           />
         ))}
@@ -183,30 +160,18 @@ export default function Skills() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-100 dark:bg-blue-900/50 rounded-full mb-6 border border-blue-200/50 dark:border-blue-700/50">
-              <Sparkles className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-              <span className="text-blue-600 dark:text-blue-400 font-medium">Technical Expertise</span>
-            </div> */}
-
+          <div className="text-center mb-16">
             <h2 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
               Technical Skills
             </h2>
 
 
-            <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-6"
-              initial={{ width: 0 }}
-              whileInView={{ width: 96 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              viewport={{ once: true }}
-            />
-          </motion.div>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto">
+              From mobile development to web technologies, here are the tools and technologies I work with
+            </p>
+
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-6" />
+          </div>
 
           {/* Skills Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
