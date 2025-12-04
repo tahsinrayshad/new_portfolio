@@ -88,11 +88,11 @@ export const achievements = [
 export const projects = [
   {
     title: "SwaapIt",
-    period: "Jun 2025 - Present",
+    period: "Jun 2025 - Sep 2025",
     description:
       "I am currently working the Skill Listings and Discovery feature, enabling users to filter and search teachers by skill, location, rating,and availability, with detailed profiles to support informed selection.",
     technologies: ["MERN Stack"],
-    status: "In Progress",
+    status: "Completed",
     supervisors: ["Njayou Youssouf", "Ajwad Abrar Mostofa"],
     github: "https://github.com/tahsinrayshad/SwapIt",
     demo: "#",
