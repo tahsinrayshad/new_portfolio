@@ -207,11 +207,17 @@ export const experiences = [
   },
   {
     organization: "IUT Photographic Society",
-    position: "Assistant Director of Logistics",
-    period: "Sep 2024 – Present",
+    position: "Head of Public Relations",
+    period: "Dec 2025 – Present",
     duration: "Sept 2022",
     type: "creative",
     events: [
+      {
+        name: "Break the Circle Season XII, 2025",
+        role: "Volunteer",
+        date: "27-30 Nov, 2025",
+        description: "Worked as Additional Director of Loigtics in the event.",
+      },
       {
         name: "Pronoia Intra-IUT Photo Exhibition 2024",
         role: "Logistics Team, Decoration Team",
@@ -234,8 +240,8 @@ export const experiences = [
   },
   {
     organization: "IUT Arts and Cultural Society",
-    position: "General Secretary",
-    period: "Aug 2024 – Present",
+    position: "President",
+    period: "Dec 2025 – Present",
     duration: "Aug 2022",
     type: "cultural",
     events: [
@@ -254,6 +260,24 @@ export const experiences = [
     ],
   },
   
+]
+
+export const workExperiences = [
+  {
+    id: 1,
+    company: "Kaz Software",
+    role: "Software Developer Intern",
+    period: "September 2025 - January 2026",
+    location: "Dhaka, Bangladesh",
+    logo: "/kaz.png",
+    description: "Describe your role and key responsibilities here.",
+    highlights: [
+      "Developed and maintained enterprise-level applications within an Agile team.",
+      "Engineered responsive UI components for the P1ston ERP using React and TypeScript, while ensuring stability through rigorous cross-environment QA.",
+      "Delivered full-stack features for the Roostpad management system, utilizing ASP.NET (C#) and MySQL to build automated reporting and administrative tools.",
+      "Proven ability to transition between frontend, backend, and testing roles to meet production goals.",
+    ],
+  },
 ]
 
 export const testimonials = [

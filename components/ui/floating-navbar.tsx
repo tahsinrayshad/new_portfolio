@@ -38,15 +38,30 @@ export default function FloatingNavbar() {
       }
 
       // Update active section based on scroll position
-      const sections = ["hero","about", "academics",  "skills", "projects", "achievements", "experience", "contact"]
-      const current = sections.find((section) => {
+      const sections = ["hero","about", "academics",  "skills", "projects", "achievements", "experience", "ECA", "contact"]
+      
+      let current = ""
+      let closestToTop = Infinity
+      
+      sections.forEach((section) => {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
+          
+          // If section is visible in viewport
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            // How far the section top is from the top of viewport
+            const distanceFromTop = Math.max(0, rect.top)
+            
+            // Prefer the section that's most visible (top closest to viewport top, but in view)
+            if (distanceFromTop < closestToTop) {
+              closestToTop = distanceFromTop
+              current = section
+            }
+          }
         }
-        return false
       })
+      
       if (current) setActiveSection(current)
     }
 
@@ -73,6 +88,7 @@ export default function FloatingNavbar() {
     { href: "#projects", label: "Projects" },
     { href: "#achievements", label: "Achievements" },
     { href: "#experience", label: "Experience" },
+    { href: "#ECA", label: "ECA" },
     { href: "#contact", label: "Contact" },
   ]
 
