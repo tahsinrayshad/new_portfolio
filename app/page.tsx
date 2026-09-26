@@ -1,8 +1,9 @@
 import Hero from "@/components/sections/Hero"
 import About from "@/components/sections/Academics"
 import PersonalInfo from "@/components/sections/About"
-import Skills from "@/components/sections/Skills"
+import Research from "@/components/sections/Research"
 import Projects from "@/components/sections/Projects"
+import Skills from "@/components/sections/Skills"
 import Achievements from "@/components/sections/Achievements"
 import Experience from "@/components/sections/Experience"
 import ECA from "@/components/sections/ECA"
@@ -14,8 +15,9 @@ export default function Home() {
       <Hero />
       <PersonalInfo />
       <About />
-      <Skills />
+      <Research />
       <Projects />
+      <Skills />
       <Achievements />
       <Experience />
       <ECA />

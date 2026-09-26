@@ -108,7 +108,7 @@ export default function About() {
           </RevealAnimation>
 
           {/* Stats Section */}
-          <RevealAnimation delay={0.2}>
+          {/* <RevealAnimation delay={0.2}>
             <div className="flex justify-center mb-16">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
                 {stats.map((stat, index) => (
@@ -133,7 +133,7 @@ export default function About() {
                 ))}
               </div>
             </div>
-          </RevealAnimation>
+          </RevealAnimation> */}
 
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
             <RevealAnimation direction="left">

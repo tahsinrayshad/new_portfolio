@@ -8,15 +8,22 @@ import { RevealAnimation } from "@/components/ui/reveal-animation"
 import { workExperiences } from "@/lib/data"
 import { useState } from "react"
 
+interface WorkExperienceProject {
+  name: string
+  context?: string
+  highlights: string[]
+}
+
 interface WorkExperience {
   id: number
   company: string
   role: string
   period: string
   location?: string
-  logo: string
+  logo?: string
   description: string
   highlights?: string[]
+  projects?: WorkExperienceProject[]
 }
 
 export default function Experience() {
@@ -106,13 +113,20 @@ export default function Experience() {
                           whileHover={{ scale: 1.1, rotate: 5 }}
                         >
                           <div className="w-20 h-20 relative rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 flex items-center justify-center flex-shrink-0 shadow-md">
-                            <Image
-                              src={exp.logo}
-                              alt={exp.company}
-                              width={80}
-                              height={80}
-                              className="w-full h-full object-cover"
-                            />
+                            {exp.logo ? (
+                              <Image
+                                src={exp.logo}
+                                alt={exp.company}
+                                width={80}
+                                height={80}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <Briefcase
+                                className="h-8 w-8 text-gray-400 dark:text-gray-500"
+                                aria-hidden="true"
+                              />
+                            )}
                           </div>
                         </motion.div>
 
@@ -167,6 +181,45 @@ export default function Experience() {
                                 </motion.li>
                               ))}
                             </ul>
+                          )}
+
+                          {/* Per-project breakdown */}
+                          {exp.projects && exp.projects.length > 0 && (
+                            <div className="space-y-5">
+                              {exp.projects.map((project, projectIndex) => (
+                                <div
+                                  key={project.name}
+                                  className="border-l-2 border-gray-200 dark:border-gray-700 pl-4"
+                                >
+                                  <div className="flex flex-wrap items-baseline gap-x-2 mb-2">
+                                    <h4 className="font-semibold text-gray-900 dark:text-white">
+                                      {project.name}
+                                    </h4>
+                                    {project.context && (
+                                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                                        {project.context}
+                                      </span>
+                                    )}
+                                  </div>
+
+                                  <ul className="space-y-2">
+                                    {project.highlights.map((highlight, i) => (
+                                      <motion.li
+                                        key={i}
+                                        className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: projectIndex * 0.1 + i * 0.05 }}
+                                      >
+                                        <ArrowRight className="h-4 w-4 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                                        <span>{highlight}</span>
+                                      </motion.li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
                           )}
                         </div>
                       </div>

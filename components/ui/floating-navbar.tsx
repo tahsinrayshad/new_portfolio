@@ -38,7 +38,7 @@ export default function FloatingNavbar() {
       }
 
       // Update active section based on scroll position
-      const sections = ["hero","about", "academics",  "skills", "projects", "achievements", "experience", "ECA", "contact"]
+      const sections = ["hero","about", "academics", "research", "projects", "skills", "achievements", "experience", "ECA", "contact"]
       
       let current = ""
       let closestToTop = Infinity
@@ -83,9 +83,10 @@ export default function FloatingNavbar() {
 
   const navItems = [
     { href: "#about", label: "About" },
-    { href: "#academics", label: "Academics" },    
-    { href: "#skills", label: "Skills" },
+    { href: "#academics", label: "Academics" },
+    { href: "#research", label: "Research" },
     { href: "#projects", label: "Projects" },
+    { href: "#skills", label: "Skills" },
     { href: "#achievements", label: "Achievements" },
     { href: "#experience", label: "Experience" },
     { href: "#ECA", label: "ECA" },

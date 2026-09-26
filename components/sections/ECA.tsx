@@ -1,264 +1,159 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import {
-  Users,
-  Camera,
-  Palette,
-  Calendar,
-  Clock,
-  Star,
-  Award,
-  Monitor
-} from "lucide-react"
+import Image from "next/image"
+import { Calendar, Ticket, Users } from "lucide-react"
 import { RevealAnimation } from "@/components/ui/reveal-animation"
 import { experiences } from "@/lib/data"
 
 export default function ECA() {
-  // Calculate dynamic stats from experiences data
-  const calculateStats = () => {
-    const activeSocieties = experiences.length
-    const totalEvents = experiences.reduce((total, exp) => total + exp.events.length, 0)
-    
-    // Calculate years of experience based on the earliest start date
-    const currentYear = new Date().getFullYear()
-    const startYears = experiences.map(exp => {
-      // Extract year from duration field (e.g., "Aug 2022" -> 2022)
-      const match = exp.duration.match(/\d{4}/)
-      return match ? parseInt(match[0]) : currentYear
-    })
-    const earliestYear = Math.min(...startYears)
-    const yearsExperience = currentYear - earliestYear
-    
-    // Estimate lives touched based on events and leadership roles
-    // Using a conservative estimate of 50-100 people per major event
-    const livesTouched = totalEvents * 75 // Average of 75 people per event
-    
-    return {
-      activeSocieties,
-      totalEvents,
-      yearsExperience,
-      livesTouched
-    }
-  }
+  const totalRoles = experiences.reduce((total, society) => total + society.roles.length, 0)
 
-  const stats = calculateStats()
-  const getIcon = (organization: string) => {
-    switch (organization) {
-      case "IUT Computer Society":
-        return Monitor
-      case "IUT Photographic Society":
-        return Camera
-      case "IUT Arts and Cultural Society":
-        return Palette
-      default:
-        return Users
-    }
-  }
+  const distinctEvents = new Set(
+    experiences.flatMap((society) => society.roles.flatMap((role) => role.events)),
+  ).size
 
-  const getGradient = (organization: string) => {
-    switch (organization) {
-      case "IUT Computer Society":
-        return "from-blue-500 to-cyan-500"
-      case "IUT Photographic Society":
-        return "from-green-500 to-emerald-500"
-      case "IUT Arts and Cultural Society":
-        return "from-red-600 to-red-800"
-      default:
-        return "from-blue-500 to-cyan-500"
-    }
-  }
-
-  const getTypeColor = (organization: string) => {
-    switch (organization) {
-      case "IUT Computer Society":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-      case "IUT Photographic Society":
-        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-      case "IUT Arts and Cultural Society":
-        return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-      default:
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-    }
-  }
+  const currentYear = new Date().getFullYear()
+  const earliestYear = Math.min(
+    ...experiences.map((society) => {
+      const match = society.duration.match(/\d{4}/)
+      return match ? Number.parseInt(match[0], 10) : currentYear
+    }),
+  )
+  const yearsActive = currentYear - earliestYear
 
   return (
-    <section id="ECA" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-      {/* Simplified static background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-green-50/50 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-green-900/10" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto">
+    <section id="ECA" className="py-20 bg-gray-50 dark:bg-gray-800">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
           <RevealAnimation>
             <div className="text-center mb-16">
               <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
                 Extracurricular Activities
               </h2>
 
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Building communities, organizing events, and leading teams across multiple university societies
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Leadership roles across university societies, building communities and running campus events
               </p>
 
               <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-6" />
             </div>
           </RevealAnimation>
 
-          <div className="flex justify-center">
-            <div className="relative w-full max-w-6xl">
-              <div className="grid lg:grid-cols-2 gap-8">
-                {experiences.map((exp, index) => {
-                  const IconComponent = getIcon(exp.organization)
-                  const gradient = getGradient(exp.organization)
-                  const typeColor = getTypeColor(exp.organization)
-                  const isLastOdd = experiences.length % 2 === 1 && index === experiences.length - 1
+          <div className="space-y-12">
+            {experiences.map((society, index) => (
+              <RevealAnimation key={society.organization} delay={index * 0.1}>
+                <article>
+                  {/* Society header */}
+                  <div className="flex items-center gap-4 pb-6 border-b border-gray-200 dark:border-gray-700">
+                    <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 flex items-center justify-center">
+                      {society.logo ? (
+                        <Image
+                          src={society.logo}
+                          alt={society.organization}
+                          width={56}
+                          height={56}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <Users className="h-6 w-6 text-gray-400 dark:text-gray-500" aria-hidden="true" />
+                      )}
+                    </div>
 
-                  const card = (
-                    <RevealAnimation key={index} delay={index * 0.2}>
-                      <motion.div
-                        className="w-full"
-                        whileHover={{ scale: 1.02, y: -5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <Card className="overflow-hidden border-0 shadow-2xl bg-white dark:bg-gray-900 relative h-full max-w-xl w-full mx-auto">
-                          <div className={`absolute inset-0 bg-gradient-to-r ${gradient} p-[2px] rounded-2xl`}>
-                            <div className="bg-white dark:bg-gray-900 rounded-2xl h-full w-full"></div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                        {society.organization}
+                      </h3>
+                      <p className="mt-1 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+                        <Calendar className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                        <span className="font-mono text-xs tabular-nums">{society.period}</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Role progression */}
+                  <ol className="relative ml-7 mt-6 space-y-6 border-l border-gray-200 dark:border-gray-700 pl-6">
+                    {society.roles.map((role) => (
+                      <li key={role.position} className="relative">
+                        <span
+                          className={`absolute -left-[1.6875rem] top-1.5 h-2.5 w-2.5 rounded-full ring-4 ring-gray-50 dark:ring-gray-800 ${
+                            role.current ? "bg-emerald-500" : "bg-gray-300 dark:bg-gray-600"
+                          }`}
+                          aria-hidden="true"
+                        />
+
+                        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                          <h4 className="font-semibold text-gray-900 dark:text-white">{role.position}</h4>
+                          {role.current && (
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
+                              Current
+                            </span>
+                          )}
+                          <span className="ml-auto font-mono text-xs tabular-nums text-gray-500 dark:text-gray-400">
+                            {role.period}
+                          </span>
+                        </div>
+
+                        <p className="mt-2 text-[15px] leading-relaxed text-gray-600 dark:text-gray-300">
+                          {role.description}
+                        </p>
+
+                        {role.events.length > 0 && (
+                          <div className="mt-3 flex flex-wrap items-center gap-2">
+                            <Ticket
+                              className="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"
+                              aria-hidden="true"
+                            />
+                            <span className="sr-only">Events</span>
+                            {role.events.map((event) => (
+                              <span
+                                key={event}
+                                className="rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-2 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-300"
+                              >
+                                {event}
+                              </span>
+                            ))}
                           </div>
-
-                          <div className="relative z-10 p-8">
-                            <div className="flex items-center justify-between mb-6">
-                              <div className="flex items-center gap-4">
-                                <motion.div
-                                  className={`p-4 bg-gradient-to-r ${gradient} rounded-2xl shadow-lg`}
-                                  whileHover={{ scale: 1.1, rotate: 5 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <IconComponent className="h-8 w-8 text-white" />
-                                </motion.div>
-                                <div>
-                                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                                    {exp.organization}
-                                  </h3>
-                                  <Badge className={`${typeColor} mt-1`}>{exp.position}</Badge>
-                                </div>
-                              </div>
-                              <div className="text-right space-y-1 min-w-0 flex-shrink-0">
-                                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                                  <Calendar className="h-3.5 w-3.5 shrink-0" />
-                                  <span className="text-xs font-medium">{exp.period}</span>
-                                </div>
-                                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                                  <Clock className="h-3.5 w-3.5 shrink-0" />
-                                  <span className="text-xs font-medium">Since {exp.duration}</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="space-y-4">
-                              <h4 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-4">
-                                <Star className="h-5 w-5 text-yellow-500" />
-                                Key Events & Achievements
-                              </h4>
-
-                              <div className="grid gap-4">
-                                {exp.events.map((event, eventIndex) => (
-                                  <div
-                                    key={eventIndex}
-                                    className="group p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover:shadow-lg transition-all duration-300 border-l-4 border-transparent hover:border-blue-500"
-                                  >
-                                    <div className="flex items-start justify-between mb-3">
-                                      <div className="flex-1">
-                                        <h5 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                          {event.name}
-                                        </h5>
-                                        <div className="flex items-start gap-3 mt-2">
-                                          <div className="flex flex-wrap gap-1">
-                                            {event.role.split(',').map((role, roleIndex) => (
-                                              <Badge key={roleIndex} variant="outline" className="text-xs">
-                                                {role.trim()}
-                                              </Badge>
-                                            ))}
-                                          </div>
-                                          <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap shrink-0">
-                                            <Calendar className="h-3 w-3 shrink-0" />
-                                            <span>{event.date}</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <motion.div
-                                        className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-                                        whileHover={{ scale: 1.1 }}
-                                        transition={{ duration: 0.3 }}
-                                      >
-                                        <Award className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                                      </motion.div>
-                                    </div>
-
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3">
-                                      {event.description}
-                                    </p>
-
-                                    <div className="flex flex-wrap gap-2">
-                                      <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs rounded-full">
-                                        Leadership
-                                      </span>
-                                      <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs rounded-full">
-                                        Event Management
-                                      </span>
-                                      <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs rounded-full">
-                                        Team Coordination
-                                      </span>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </Card>
-                      </motion.div>
-                    </RevealAnimation>
-                  )
-
-                  return isLastOdd ? (
-                    <div key={index} className="lg:col-span-2 flex justify-center">{card}</div>
-                  ) : (
-                    card
-                  )
-                })}
-              </div>
-            </div>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                </article>
+              </RevealAnimation>
+            ))}
           </div>
 
-          <RevealAnimation delay={0.8}>
-            <div className="mt-20 text-center">
-              <motion.div
-                className="inline-flex items-center gap-8 px-12 py-8 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-800"
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="text-center">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                    {stats.activeSocieties}
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300 font-medium">Active Societies</div>
-                </div>
-                <div className="w-px h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    {stats.totalEvents}+
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300 font-medium">Major Events</div>
-                </div>
-                <div className="w-px h-16 bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                    {stats.yearsExperience}+
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300 font-medium">Years Experience</div>
-                </div>
-              </motion.div>
-            </div>
+          {/* Summary */}
+          <RevealAnimation delay={0.3}>
+            <dl className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-y-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-6 sm:divide-x sm:divide-gray-200 sm:dark:divide-gray-700">
+              <div className="px-4 text-center">
+                <dd className="text-3xl font-semibold tabular-nums text-gray-900 dark:text-white">
+                  {experiences.length}
+                </dd>
+                <dt className="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                  Societies
+                </dt>
+              </div>
+              <div className="px-4 text-center">
+                <dd className="text-3xl font-semibold tabular-nums text-gray-900 dark:text-white">{totalRoles}</dd>
+                <dt className="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                  Roles held
+                </dt>
+              </div>
+              <div className="px-4 text-center">
+                <dd className="text-3xl font-semibold tabular-nums text-gray-900 dark:text-white">
+                  {distinctEvents}
+                </dd>
+                <dt className="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                  Events
+                </dt>
+              </div>
+              <div className="px-4 text-center">
+                <dd className="text-3xl font-semibold tabular-nums text-gray-900 dark:text-white">{yearsActive}+</dd>
+                <dt className="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                  Years active
+                </dt>
+              </div>
+            </dl>
           </RevealAnimation>
         </div>
       </div>
