@@ -258,7 +258,7 @@ export const workExperiences = [
   {
     id: 2,
     company: "AFK Tech Ltd",
-    role: "Backend Developer (Contractual)",
+    role: "Software Developer (Contractual)",
     period: "June 2026 - Present",
     location: "Dhaka, Bangladesh",
     logo: "/afk.jpg",
